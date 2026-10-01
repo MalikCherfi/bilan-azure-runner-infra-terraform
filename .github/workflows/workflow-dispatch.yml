@@ -1,9 +1,6 @@
 name: Terraform workflow dispatch
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       action:
