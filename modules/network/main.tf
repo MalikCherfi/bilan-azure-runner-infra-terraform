@@ -58,7 +58,3 @@ resource "azurerm_network_interface_security_group_association" "vm" {
   network_interface_id      = azurerm_network_interface.vm.id
   network_security_group_id = azurerm_network_security_group.vm.id
 }
-
-output "public_ip" {
-  value = azurerm_public_ip.vm.ip_address
-}
