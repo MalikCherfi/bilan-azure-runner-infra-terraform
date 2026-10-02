@@ -1,6 +1,6 @@
 resource "tls_private_key" "ssh_key" {
   algorithm = "RSA"
-  rsa_bits = 4096
+  rsa_bits  = 4096
 }
 
 resource "azurerm_key_vault_secret" "private_ssh" {
@@ -10,13 +10,13 @@ resource "azurerm_key_vault_secret" "private_ssh" {
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                = "pipeline-runner"
-  resource_group_name = var.resource_group_name
-  location            = var.location
-  size                = "Standard_B2s"
-  admin_username      = "runner-admin"
+  name                            = "pipeline-runner"
+  resource_group_name             = var.resource_group_name
+  location                        = var.location
+  size                            = "Standard_B2s"
+  admin_username                  = "runner-admin"
   disable_password_authentication = true
-  tags                = var.tags
+  tags                            = var.tags
   network_interface_ids = [
     var.interface_id,
   ]
@@ -40,7 +40,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
     sku       = "server"
     version   = "latest"
   }
-  
+
   identity {
     type = "SystemAssigned"
   }
