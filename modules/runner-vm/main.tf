@@ -46,22 +46,20 @@ resource "azurerm_linux_virtual_machine" "vm" {
   }
 }
 
-data "azurerm_role_definition" "contributor" {
-  name = "Contributor"
-}
-
-data "azurerm_role_definition" "keyvaul" {
-  name = "Key Vault Certificates Officer"
+data "azurerm_resource_group" "rg" {
+  name = var.resource_group_name
 }
 
 resource "azurerm_role_assignment" "contributor" {
-  scope              = var.current_subscription_id
-  role_definition_id = "${var.current_subscription_id}${data.azurerm_role_definition.contributor.id}"
-  principal_id       = azurerm_linux_virtual_machine.vm.identity[0].principal_id
+  scope                            = data.azurerm_resource_group.rg.id
+  role_definition_name             = "Contributor"
+  principal_id                     = azurerm_linux_virtual_machine.vm.identity[0].principal_id
+  skip_service_principal_aad_check = true
 }
 
 resource "azurerm_role_assignment" "keyvault" {
-  scope              = var.current_subscription_id
-  role_definition_id = "${var.current_subscription_id}${data.azurerm_role_definition.keyvaul.id}"
-  principal_id       = azurerm_linux_virtual_machine.vm.identity[0].principal_id
+  scope                            = var.key_vault_id
+  role_definition_name             = "Key Vault Secrets User"
+  principal_id                     = azurerm_linux_virtual_machine.vm.identity[0].principal_id
+  skip_service_principal_aad_check = true
 }
