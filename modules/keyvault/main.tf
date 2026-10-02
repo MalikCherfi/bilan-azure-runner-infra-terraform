@@ -11,17 +11,17 @@ resource "azurerm_key_vault" "runner" {
     object_id = var.object_id
 
     key_permissions = [
-      "create",
-      "get",
+      "Create",
+      "Get",
     ]
 
     secret_permissions = [
-      "set",
-      "list",
-      "get",
-      "delete",
-      "purge",
-      "recover"
+      "Set",
+      "List",
+      "Get",
+      "Delete",
+      "Purge",
+      "Recover"
     ]
   }
 }
