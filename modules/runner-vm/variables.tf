@@ -22,3 +22,8 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "current_subscription_id" {
+  type        = string
+  default     = ""
+}
