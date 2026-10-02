@@ -41,16 +41,8 @@ resource "azurerm_network_security_group" "vm" {
   resource_group_name = var.resource_group_name
   tags                = var.tags
 
-  security_rule {
-    name                       = "allow-ssh"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = var.ssh_allowed_cidr
-    destination_address_prefix = "*"
+  lifecycle {
+    ignore_changes = [security_rule]
   }
 }
 
