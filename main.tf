@@ -44,10 +44,11 @@ module "keyvault" {
 module "runner_vm" {
   source = "./modules/runner-vm"
 
-  resource_group_name = var.resource_group_name
-  location            = var.location
-  interface_id        = module.network.interface_id
-  key_vault_id        = module.keyvault.key_vault_id
-  tags                = local.tags
+  resource_group_name     = var.resource_group_name
+  location                = var.location
+  interface_id            = module.network.interface_id
+  key_vault_id            = module.keyvault.key_vault_id
+  current_subscription_id = data.azurerm_subscription.current.id
+  tags                    = local.tags
 }
 
