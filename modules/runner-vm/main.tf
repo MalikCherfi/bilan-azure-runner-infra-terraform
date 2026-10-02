@@ -13,7 +13,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   name                            = "pipeline-runner"
   resource_group_name             = var.resource_group_name
   location                        = var.location
-  size                            = "Standard_B2s"
+  size                            = "Standard_D2s_v4"
   admin_username                  = "runner-admin"
   disable_password_authentication = true
   tags                            = var.tags
