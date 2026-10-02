@@ -47,7 +47,7 @@ jobs:
             - name: Terraform Init
               run: |
                   terraform init \
-                    -backend-config="resource_group_name=${{ vars.AZURE_RESOURCE_GROUP }}" \
+                    -backend-config="resource_group_name=${{ vars.TF_VAR_RESOURCE_GROUP_NAME }}" \
                     -backend-config="storage_account_name=${{ vars.AZURE_SA_NAME }}" \
                     -backend-config="container_name=${{ vars.AZURE_CONTAINER_NAME }}" \
                     -backend-config="key=${{ secrets.TFSTATE_KEY }}"
